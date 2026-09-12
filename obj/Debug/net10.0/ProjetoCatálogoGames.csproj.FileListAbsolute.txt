@@ -1,0 +1,15 @@
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\bin\Debug\net10.0\ProjetoCatálogoGames.exe
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\bin\Debug\net10.0\ProjetoCatálogoGames.deps.json
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\bin\Debug\net10.0\ProjetoCatálogoGames.runtimeconfig.json
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\bin\Debug\net10.0\ProjetoCatálogoGames.dll
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\bin\Debug\net10.0\ProjetoCatálogoGames.pdb
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\obj\Debug\net10.0\ProjetoCatálogoGames.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\obj\Debug\net10.0\ProjetoCatálogoGames.AssemblyInfoInputs.cache
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\obj\Debug\net10.0\ProjetoCatálogoGames.AssemblyInfo.cs
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\obj\Debug\net10.0\ProjetoCatálogoGames.csproj.CoreCompileInputs.cache
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\obj\Debug\net10.0\ProjetoCatálogoGames.sourcelink.json
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\obj\Debug\net10.0\ProjetoCatálogoGames.dll
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\obj\Debug\net10.0\refint\ProjetoCatálogoGames.dll
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\obj\Debug\net10.0\ProjetoCatálogoGames.pdb
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\obj\Debug\net10.0\ProjetoCatálogoGames.genruntimeconfig.cache
+C:\Users\Erick\OneDrive\Área de Trabalho\Catalogo-de-Jogos\obj\Debug\net10.0\ref\ProjetoCatálogoGames.dll

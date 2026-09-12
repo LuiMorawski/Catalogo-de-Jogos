@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ACER\\OneDrive\\Área de Trabalho\\Trabalho C#\\ProjetoCatálogoGames\\ProjetoCatálogoGames.csproj": {}
+    "C:\\Users\\Erick\\OneDrive\\Área de Trabalho\\Catalogo-de-jogos\\ProjetoCatálogoGames.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ACER\\OneDrive\\Área de Trabalho\\Trabalho C#\\ProjetoCatálogoGames\\ProjetoCatálogoGames.csproj": {
+    "C:\\Users\\Erick\\OneDrive\\Área de Trabalho\\Catalogo-de-jogos\\ProjetoCatálogoGames.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ACER\\OneDrive\\Área de Trabalho\\Trabalho C#\\ProjetoCatálogoGames\\ProjetoCatálogoGames.csproj",
+        "projectUniqueName": "C:\\Users\\Erick\\OneDrive\\Área de Trabalho\\Catalogo-de-jogos\\ProjetoCatálogoGames.csproj",
         "projectName": "ProjetoCatálogoGames",
-        "projectPath": "C:\\Users\\ACER\\OneDrive\\Área de Trabalho\\Trabalho C#\\ProjetoCatálogoGames\\ProjetoCatálogoGames.csproj",
-        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ACER\\OneDrive\\Área de Trabalho\\Trabalho C#\\ProjetoCatálogoGames\\obj\\",
+        "projectPath": "C:\\Users\\Erick\\OneDrive\\Área de Trabalho\\Catalogo-de-jogos\\ProjetoCatálogoGames.csproj",
+        "packagesPath": "C:\\Users\\Erick\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Erick\\OneDrive\\Área de Trabalho\\Catalogo-de-jogos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Erick\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -39,7 +39,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.400"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net10.0": {
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

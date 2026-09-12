@@ -8,19 +8,19 @@
     "net10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\ACER\\.nuget\\packages\\": {}
+    "C:\\Users\\Erick\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ACER\\OneDrive\\Área de Trabalho\\Trabalho C#\\ProjetoCatálogoGames\\ProjetoCatálogoGames.csproj",
+      "projectUniqueName": "C:\\Users\\Erick\\OneDrive\\Área de Trabalho\\Catalogo-de-Jogos\\ProjetoCatálogoGames.csproj",
       "projectName": "ProjetoCatálogoGames",
-      "projectPath": "C:\\Users\\ACER\\OneDrive\\Área de Trabalho\\Trabalho C#\\ProjetoCatálogoGames\\ProjetoCatálogoGames.csproj",
-      "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ACER\\OneDrive\\Área de Trabalho\\Trabalho C#\\ProjetoCatálogoGames\\obj\\",
+      "projectPath": "C:\\Users\\Erick\\OneDrive\\Área de Trabalho\\Catalogo-de-Jogos\\ProjetoCatálogoGames.csproj",
+      "packagesPath": "C:\\Users\\Erick\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Erick\\OneDrive\\Área de Trabalho\\Catalogo-de-Jogos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Erick\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -45,7 +45,7 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.400"
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net10.0": {
@@ -67,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",
