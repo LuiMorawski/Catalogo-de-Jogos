@@ -57,9 +57,51 @@ foreach (var jogo in jogos)
             System.Console.WriteLine("Jogo não Encontrado");
             Console.ForegroundColor = ConsoleColor.White;
         }
+    }
+        // procura o jogo pelo id devolve null se nao encontrar 
+        public Jogo BuscarJogoPorId(int id)
+        {
+            foreach (var jogo in jogos)
+            {
+                if (jogo.Id == id)
+                {
+                    return jogo;
+                }
+            }
+            return null; 
+        }
+         
+    // o Jogo.AdicionarAvaliacao ja checa se o autor repetiu
+    public void AvaliarJogo(int idJogo, string autor, int nota, string comentario)
+    {
+        Jogo jogo = BuscarJogoPorId(idJogo);
+ 
+        if (jogo == null)
+        {
+            throw new ArgumentException("Jogo nao encontrado.");
+        }
+ 
+        Avaliacao avaliacao = new Avaliacao(jogo, nota, autor);
+        avaliacao.Comentario = comentario;
+ 
+        jogo.AdicionarAvaliacao(avaliacao);
+    }
+ 
+    // mostra os jogos ordenados da maior media pra menor
+    public void ExibirRanking()
+    {
+        List<Jogo> ranking = jogos.OrderByDescending(j => j.CalcularMediaAvaliacoes()).ToList();
+ 
+        int posicao = 1;
+        foreach (var jogo in ranking)
+        {
+            Console.WriteLine($"{posicao}º - {jogo.Titulo} | Media: {jogo.CalcularMediaAvaliacoes():F1}/10");
+            posicao++;
 {
     
 }
     }
+
+}
 
 }

@@ -73,9 +73,43 @@ Console.Clear();
            break;
 
            case 5:
-           break;
+         catalogoServices.ListarJogos();
+    System.Console.WriteLine("Digite o id do Jogo que quer Avaliar: ");
+    int idJogoAvaliar = int.Parse(System.Console.ReadLine());
+
+    System.Console.WriteLine("Digite a nota para a Avaliação (0-10): ");
+    int notaAvaliacao = int.Parse(Console.ReadLine());
+
+    System.Console.WriteLine("Digite o seu nome para a Avaliação: ");
+    string autorAvaliacao = Console.ReadLine();
+
+    System.Console.WriteLine("Digite o seu comentário para a Avaliação(opcional): ");
+    string comentarioAvaliacao = Console.ReadLine();
+
+    try
+    {
+        catalogoServices.AvaliarJogo(idJogoAvaliar, autorAvaliacao, notaAvaliacao, comentarioAvaliacao);
+        Console.ForegroundColor = ConsoleColor.Green;
+        System.Console.WriteLine("Avaliação registrada com sucesso!");
+        Console.ForegroundColor = ConsoleColor.White;
+    }
+    catch (Exception ex)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        System.Console.WriteLine(ex.Message);
+        Console.ForegroundColor = ConsoleColor.White;
+    }
+
+    Console.WriteLine("\nPressione qualquer tecla para continuar...");
+    Console.ReadKey();
+    break;
 
            case 6:
+           System.Console.WriteLine("Ranking dos jogos:");
+           catalogoServices.ExibirRanking();
+           Console.WriteLine("\nPressione qualquer tecla para continuar...");
+           Console.ReadKey();
+           break;
            break;
 
            case 0:

@@ -239,3 +239,11 @@ Cada opção chama um método correspondente em `Program.cs`, que por sua vez us
 | **Tecnologia** | C# (.NET 8) — Aplicação Console |
 
 </div>
+
+---
+
+## 👨‍💻 Autores
+
+- Luiz
+- Nathan
+- Erick
