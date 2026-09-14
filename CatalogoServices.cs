@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.JavaScript;
 
 public class CatalogoServices
 {
@@ -8,20 +6,43 @@ public List <Jogo> jogos = new();
 // id do jogo
 private int proximoId = 1;
 
+public List<Genero> generos = new();
+private int proximoIdGenero = 1;
+
+
+
+
 public void CadastrarJogo(String titulo, int ano, Genero genero)
     {
         Jogo jogo = new Jogo(titulo, ano,genero);
         jogo.Id = proximoId;
         proximoId++;
         jogos.Add(jogo);
+        
+        genero.Jogos.Add(jogo);
+    }
 
+public Genero ObterOuCriarGenero(string nome)
+    {
+        foreach (var g in generos)
+        {
+            if(g.Nome.Equals(nome, StringComparison.OrdinalIgnoreCase))
+            {
+                return g;
+            }
+        }
+        Genero novo = new Genero(nome);
+        novo.Id = proximoIdGenero;
+        proximoIdGenero++;
+        generos.Add(novo);
+        return novo;
     }
 
 public void ListarJogos()
     {
         foreach (var jogo in jogos)
         {
-            Console.WriteLine($"ID: {jogo.Id} | Nome: {jogo.Titulo} - Ano: {jogo.AnoLancamento} ");
+            Console.WriteLine($"ID: {jogo.Id} | Nome: {jogo.Titulo} - Ano: {jogo.AnoLancamento} - Genero: {jogo.Genero.Nome}");
         }
     }
     public void BuscarJogo(string busca)
@@ -31,7 +52,7 @@ public void ListarJogos()
             // aqui é igual o equals porem ele busca por ser parecido e não exatamente igual o nome do jogo
             if(jogo.Titulo.Contains(busca, StringComparison.OrdinalIgnoreCase))
             {
-                System.Console.WriteLine(jogo.Titulo + " - " + jogo.AnoLancamento);
+                System.Console.WriteLine(jogo.Titulo + " - " + jogo.AnoLancamento + " - " + jogo.Genero.Nome);
             }
         }
     }
@@ -97,9 +118,6 @@ foreach (var jogo in jogos)
         {
             Console.WriteLine($"{posicao}º - {jogo.Titulo} | Media: {jogo.CalcularMediaAvaliacoes():F1}/10");
             posicao++;
-{
-    
-}
     }
 
 }
