@@ -12,50 +12,37 @@
 
 ---
 
-## 📚 Sobre o projeto
+📚 Sobre o projeto
 
-O **Catálogo de Jogos** é uma aplicação de console desenvolvida em **C# (.NET 8)** para a disciplina de **Desenvolvimento de Software Visual**, sob orientação do **Prof. Marlon**, como parte da atividade **A2-1**.
+O Catálogo de Jogos é uma aplicação de console desenvolvida em C# (.NET 8) para a disciplina de Desenvolvimento de Software Visual, sob orientação do Prof. Marlon, como parte da atividade A2-1.
 
 O sistema permite:
 
-- 🕹️ Cadastrar jogos
-- ⭐ Avaliá-los com nota (0 a 10) e comentário
-- 🏆 Calcular automaticamente um **ranking dos jogos mais bem avaliados**
+🕹️ Cadastrar jogos (com título, ano de lançamento e gênero)
+⭐ Avaliá-los com nota (0 a 10) e comentário
+🔍 Buscar jogos por título
+🗑️ Remover jogos
+🏆 Calcular automaticamente um ranking dos jogos mais bem avaliados
 
-Toda a interação acontece por meio de um **menu no console**.
+Toda a interação acontece por meio de um menu no console.
 
----
-
-## 🧩 Diagrama de classes (visão geral)
-
-```
+🧩 Diagrama de classes (visão geral)
 Program
   │
-  └── CatalogoService
+  └── CatalogoServices
         │
         ├── List<Jogo>
         │      │
-        │      ├── Genero (enum)
-        │      ├── Plataforma (enum)
+        │      ├── Genero (1:N — um gênero pode ter vários jogos)
+        │      ├── List<JogoPlataforma> (N:N com Plataforma, via classe de junção)
         │      └── List<Avaliacao>
-        │              │
-        │              └── Usuario
         │
-        └── List<Usuario>
-```
-
-| Relação | Cardinalidade | Descrição |
-|---|:---:|---|
-| `Jogo` → `Avaliacao` | 1 : N | Um jogo possui várias avaliações |
-| `Avaliacao` → `Usuario` | N : 1 | Uma avaliação referencia um usuário |
-| `Jogo` → `Genero` / `Plataforma` | 1 : 1 | Atributos do tipo enum |
-| `CatalogoService` → `Jogo` / `Usuario` | 1 : N | Gerencia as listas do sistema |
-
----
-
-## 🏗️ Estrutura de arquivos
-
-```
+        └── List<Genero>
+Relação	Cardinalidade	Descrição
+Jogo → Avaliacao	1 : N	Um jogo possui várias avaliações
+Genero → Jogo	1 : N	Um gênero pode estar associado a vários jogos
+Jogo ↔ Plataforma	N : N	Um jogo pode ter várias plataformas e vice-versa, via JogoPlataforma
+🏗️ Estrutura de arquivos
 CatalogoJogos/
  ├── CatalogoJogos.csproj
  ├── Program.cs
@@ -63,187 +50,152 @@ CatalogoJogos/
  ├── Models/
  │    ├── Jogo.cs
  │    ├── Avaliacao.cs
- │    ├── Usuario.cs
  │    ├── Genero.cs
- │    └── Plataforma.cs
+ │    ├── Plataforma.cs
+ │    └── JogoPlataforma.cs
  └── Services/
-      └── CatalogoService.cs
-```
-
----
-
-## 🧱 Classes de modelo
-
-### 🎮 `Jogo`
+      └── CatalogoServices.cs
+🧱 Classes de modelo
+🎮 Jogo
 
 Representa um jogo cadastrado no catálogo.
 
-| Atributo | Tipo | Descrição |
-|---|---|---|
-| `Id` | `int` | Identificador único, gerado automaticamente |
-| `Titulo` | `string` | Nome do jogo |
-| `Genero` | `Genero` (enum) | Gênero do jogo |
-| `Plataforma` | `Plataforma` (enum) | Plataforma do jogo |
-| `Avaliacoes` | `List<Avaliacao>` | Lista de avaliações recebidas |
+Atributo	Tipo	Descrição
+Id	int	Identificador único, gerado automaticamente
+Titulo	string	Nome do jogo
+AnoLancamento	int	Ano de lançamento do jogo
+DataCadastro	DateTime	Preenchida automaticamente no momento do cadastro
+GeneroId / Genero	int / Genero	Gênero do jogo (relação 1:N)
+JogoPlataformas	List<JogoPlataforma>	Plataformas vinculadas ao jogo (relação N:N)
+Avaliacoes	List<Avaliacao>	Lista de avaliações recebidas
 
-**Construtor**
-```csharp
-Jogo(int id, string titulo, Genero genero, Plataforma plataforma)
-```
+Construtor
 
-**Métodos**
+csharp
+Jogo(string titulo, int anoLancamento, Genero genero)
 
-| Método | Retorno | Descrição |
-|---|---|---|
-| `UsuarioJaAvaliou(Usuario usuario)` | `bool` | Verifica se o usuário já avaliou este jogo |
-| `AdicionarAvaliacao(Avaliacao avaliacao)` | `void` | Adiciona uma avaliação à lista |
-| `MediaAvaliacoes()` | `double` | Calcula a média das notas recebidas |
-| `ToString()` | `string` | Formata a exibição do jogo no console |
+Métodos
 
----
+Método	Retorno	Descrição
+AdicionarPlataforma(Plataforma plataforma)	void	Vincula uma plataforma ao jogo, evitando duplicidade
+AdicionarAvaliacao(Avaliacao avaliacao)	void	Adiciona uma avaliação, impedindo que o mesmo autor avalie duas vezes
+CalcularMediaAvaliacoes()	double	Calcula a média das notas recebidas
+⭐ Avaliacao
 
-### ⭐ `Avaliacao`
+Representa a avaliação de um jogo feita por um autor.
 
-Representa a avaliação de um jogo feita por um usuário.
+Atributo	Tipo	Descrição
+Id	int	Identificador único
+JogoId / Jogo	int / Jogo	Jogo avaliado
+Nota	int	Nota de 0 a 10
+Autor	string	Nome de quem avaliou
+Comentario	string	Comentário opcional sobre o jogo
+DataAvaliacao	DateTime	Preenchida automaticamente
 
-| Atributo | Tipo | Descrição |
-|---|---|---|
-| `Usuario` | `Usuario` | Usuário que fez a avaliação |
-| `Nota` | `int` | Nota de 0 a 10 |
-| `Comentario` | `string` | Comentário opcional sobre o jogo |
-| `Data` | `DateTime` | Data em que a avaliação foi registrada |
+Construtor
 
-**Construtor**
-```csharp
-Avaliacao(Usuario usuario, int nota, string comentario)
-```
-> ⚠️ Lança `ArgumentException` se `nota < 0` ou `nota > 10`.
+csharp
+Avaliacao(Jogo jogo, int nota, string autor)
 
----
+⚠️ Lança ArgumentException se nota < 0 ou nota > 10.
 
-### 👤 `Usuario`
+🗂️ Genero
 
-Representa a pessoa que avalia jogos.
+Representa o gênero de um jogo.
 
-| Atributo | Tipo | Descrição |
-|---|---|---|
-| `Id` | `int` | Identificador único, gerado automaticamente |
-| `Nome` | `string` | Nome do usuário |
+Atributo	Tipo	Descrição
+Id	int	Identificador único
+Nome	string	Nome do gênero (ex: Ação, RPG, Terror)
+Jogos	List<Jogo>	Jogos cadastrados nesse gênero
 
-**Construtor**
-```csharp
-Usuario(int id, string nome)
-```
+Construtores
 
----
+csharp
+Genero()              // gênero vazio
+Genero(string nome)   // gênero com nome definido
 
-### 🗂️ Enums
+Gêneros são reaproveitados automaticamente: ao cadastrar um jogo, o sistema busca se já existe um gênero com aquele nome (ignorando maiúsculas/minúsculas) antes de criar um novo.
 
-<table>
-<tr>
-<td valign="top">
+🎛️ Plataforma / JogoPlataforma
+<table> <tr> <td valign="top">
 
-**`Genero`**
-- Acao
-- Aventura
-- RPG
-- Esporte
-- Estrategia
-- Simulacao
-- Corrida
-- Terror
-- Puzzle
-- Outro
+Plataforma
 
-</td>
-<td valign="top">
+Atributo	Tipo
+Id	int
+Nome	string
+JogoPlataformas	List<JogoPlataforma>
+</td> <td valign="top">
 
-**`Plataforma`**
-- PC
-- PS5
-- PS4
-- XboxSeriesX
-- XboxOne
-- NintendoSwitch
-- Mobile
+JogoPlataforma (classe de junção)
 
-</td>
-</tr>
-</table>
+Atributo	Tipo
+JogoId / Jogo	int / Jogo
+PlataformaId / Plataforma	int / Plataforma
+</td> </tr> </table>
 
----
+Modelada com relação N:N em relação a Jogo, através da classe de junção JogoPlataforma.
 
-## ⚙️ Classe de serviço — `CatalogoService`
+ℹ️ Nota: a estrutura de dados e os métodos de vínculo (AdicionarPlataforma) já estão implementados, mas o menu de console ainda não oferece uma opção para cadastrar a plataforma de um jogo. Fica como funcionalidade pronta para uma próxima etapa.
 
-Organiza as regras de negócio e as listas do sistema, separando essa lógica da interface de console (`Program`).
+⚙️ Classe de serviço — CatalogoServices
 
-| Atributo | Tipo | Descrição |
-|---|---|---|
-| `jogos` | `List<Jogo>` | Todos os jogos cadastrados |
-| `usuarios` | `List<Usuario>` | Todos os usuários que já avaliaram algum jogo |
-| `proximoIdJogo` / `proximoIdUsuario` | `int` | Contadores internos para gerar Ids |
+Organiza as regras de negócio e as listas do sistema, separando essa lógica da interface de console (Program).
 
-**Principais métodos**
+Atributo	Tipo	Descrição
+jogos	List<Jogo>	Todos os jogos cadastrados
+generos	List<Genero>	Todos os gêneros já criados
+proximoId / proximoIdGenero	int	Contadores internos para gerar Ids
 
-| Método | Descrição |
-|---|---|
-| `CadastrarJogo(titulo, genero, plataforma)` | Valida título vazio e título duplicado |
-| `ListarJogos()` | Lista todos os jogos cadastrados |
-| `BuscarJogoPorId(id)` | Busca um jogo pelo Id |
-| `BuscarJogosPorTitulo(termo)` | Busca jogos pelo título |
-| `RemoverJogo(id)` | Remove um jogo do catálogo |
-| `ObterOuCriarUsuario(nome)` | Reaproveita o usuário se o nome já existir |
-| `AvaliarJogo(idJogo, nomeUsuario, nota, comentario)` | Aplica a regra de "uma avaliação por usuário por jogo" |
-| `ObterRanking()` | Retorna os jogos ordenados pela média de avaliações (maior → menor) |
+Principais métodos
 
----
+Método	Descrição
+CadastrarJogo(titulo, ano, genero)	Cadastra um novo jogo e sincroniza a lista do gênero
+ObterOuCriarGenero(nome)	Reaproveita o gênero se o nome já existir, senão cria um novo
+ListarJogos()	Lista todos os jogos cadastrados, com gênero
+BuscarJogo(busca)	Busca jogos cujo título contenha o termo digitado
+BuscarJogoPorId(id)	Busca um jogo pelo Id
+RemoverJogo(id)	Remove um jogo do catálogo
+AvaliarJogo(idJogo, autor, nota, comentario)	Aplica a regra de "uma avaliação por autor por jogo"
+ExibirRanking()	Exibe os jogos ordenados pela média de avaliações (maior → menor)
+✅ Regras de negócio implementadas
+ Validação de nota — a nota de uma avaliação deve estar entre 0 e 10 (Avaliacao)
+ Avaliação única por autor — um mesmo autor não pode avaliar o mesmo jogo mais de uma vez (Jogo.AdicionarAvaliacao)
+ Reaproveitamento de gênero — gêneros com o mesmo nome (ignorando maiúsculas/minúsculas) não são duplicados (CatalogoServices.ObterOuCriarGenero)
+ Cálculo de ranking — os jogos são ordenados pela média das notas recebidas (Jogo.CalcularMediaAvaliacoes + CatalogoServices.ExibirRanking)
+🛡️ Tratamento de erros
 
-## ✅ Regras de negócio implementadas
+Todas as opções do menu que dependem de entrada numérica do usuário (int.Parse) estão protegidas com try/catch, evitando que o programa encerre inesperadamente ao digitar um valor inválido:
 
-- [x] **Validação de nota** — a nota de uma avaliação deve estar entre 0 e 10 (`Avaliacao`)
-- [x] **Título único** — não é permitido cadastrar dois jogos com o mesmo título (`CatalogoService.CadastrarJogo`)
-- [x] **Avaliação única por usuário** — um mesmo usuário não pode avaliar o mesmo jogo mais de uma vez (`Jogo.UsuarioJaAvaliou`)
-- [x] **Cálculo de ranking** — os jogos são ordenados pela média das notas recebidas (`Jogo.MediaAvaliacoes` + `CatalogoService.ObterRanking`)
+Leitura da opção do menu
+Cadastro de jogo (ano)
+Remoção de jogo (Id)
+Avaliação de jogo (Id e nota)
+🖥️ Menu do sistema
+╔═══════════════════════════╗
+║           MENU            ║
+╠═══════════════════════════╣
+║ 1 - Cadastrar jogo        ║
+║ 2 - Listar jogos          ║
+║ 3 - Buscar jogo por titulo║
+║ 4 - Remover jogo          ║
+║ 5 - Avaliar jogo          ║
+║ 6 - Exibir ranking        ║
+║ 0 - Sair                  ║
+╚═══════════════════════════╝
 
----
-
-## 🖥️ Menu do sistema
-
-```
-========================================
-        CATALOGO DE JOGOS
-========================================
-1 - Cadastrar jogo
-2 - Listar jogos
-3 - Buscar jogo por titulo
-4 - Remover jogo
-5 - Avaliar jogo
-6 - Exibir ranking dos mais bem avaliados
-0 - Sair
-========================================
-```
-
-Cada opção chama um método correspondente em `Program.cs`, que por sua vez usa o `CatalogoService` para manipular as listas de `Jogo` e `Usuario`.
-
----
+Cada opção chama um método correspondente em Program.cs, que por sua vez usa o CatalogoServices para manipular as listas de Jogo e Genero.
 
 <div align="center">
-
-### 🏫 Informações acadêmicas
-
-| | |
-|---|---|
-| **Disciplina** | Desenvolvimento de Software Visual |
-| **Professor** | Marlon |
-| **Atividade** | A2-1 — Desenvolvimento de um sistema em C# |
-| **Tecnologia** | C# (.NET 8) — Aplicação Console |
-
+🏫 Informações acadêmicas
+	
+Disciplina	Desenvolvimento de Software Visual
+Professor	Marlon
+Atividade	A2-1 — Desenvolvimento de um sistema em C#
+Tecnologia	C# (.NET 8) — Aplicação Console
 </div>
 
----
-
-## 👨‍💻 Autores
-
-- Luiz
-- Nathan
-- Erick
+👨‍💻 Autores
+Luiz
+Nathan
+Erick
